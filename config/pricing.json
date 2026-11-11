@@ -1,0 +1,13 @@
+{
+  "$comment": "Customer-facing prices in USD base. Local-currency prices are configured in Stripe (Phase 1). Changing these requires owner approval (see CLAUDE.md working agreements).",
+  "baseCurrency": "USD",
+  "products": {
+    "instant": { "priceUsd": 5.99 },
+    "custom": { "priceUsd": 12.99 },
+    "businessSmall": { "priceUsd": 99, "children": 60 },
+    "businessStandard": { "priceUsd": 199, "children": 200 },
+    "businessLarge": { "priceUsd": 399, "children": 600 }
+  },
+  "businessRevenueShare": 0.2,
+  "businessCampaignEndDate": "2026-12-31"
+}

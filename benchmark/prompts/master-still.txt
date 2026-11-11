@@ -1,0 +1,7 @@
+Create a new photorealistic 16:9 landscape image of the exact same Santa Claus shown in the reference images: same face, same round gold wire-rimmed glasses, same full white curly beard and moustache, same red velvet hat with white fur trim and pom-pom, same red velvet suit with white fur trim, same cozy log-cabin room with a stone fireplace and crackling fire, and a Christmas tree with warm white lights.
+
+Composition (important): it is a webcam video call. Santa sits facing the camera at eye level, shown from mid-chest up, perfectly centered horizontally. His whole head, hat and beard must stay inside the middle third of the frame width, so the image can later be center-cropped to a 9:16 vertical frame. The fireplace with fire is softly out of focus on the left side of the frame, the lit Christmas tree softly out of focus on the right side, with warm bokeh fairy lights along the mantel.
+
+Expression: looking directly into the camera lens, warm kind eyes, gentle closed-mouth smile with lips relaxed and fully closed, calm neutral head pose, shoulders relaxed, hands resting below the frame and not visible.
+
+Look: cinematic warm golden firelight with soft key light on his face, natural skin texture, shallow depth of field, premium and cozy, not cartoonish. No text, no logos, no watermark, no other people.

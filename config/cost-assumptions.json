@@ -1,0 +1,32 @@
+{
+  "$comment": "Operating assumptions for the cost model. These are estimates, not measurements - Phase 0 benchmark replaces the latency/take numbers with measured ones.",
+  "nameClip": {
+    "seconds": 2.4,
+    "$seconds": "Measured 2026-11-10 with Jerry B: only 'Hello, <name>!' is lip-synced (mid-pause to mid-pause); 'Ho ho ho' and the elves line stay master",
+    "greetingChars": 80,
+    "takesPerName": 1.3,
+    "$takes": "Average generations per library name including QA retakes"
+  },
+  "library": {
+    "namesPerLanguage": { "en": 4000, "fr": 2500 },
+    "$names": "EN = top 2,000 each from US SSA + UK ONS + Canada (ex-QC) after dedup; FR = Quebec (Retraite Quebec) + France (INSEE) after dedup"
+  },
+  "instant": {
+    "rareNameShare": 0.08,
+    "$rare": "Share of orders whose name is not in the library yet (each rare render then joins the library)"
+  },
+  "custom": {
+    "spokenSeconds": 75,
+    "scriptChars": 1100,
+    "personalizedSeconds": 30,
+    "$personalized": "If the locked template keeps fixed sentences pre-rendered and only personalized sentences are lip-synced",
+    "previewChars": 220,
+    "previewsPerPurchase": 3,
+    "$previews": "Audio previews generated per paid custom order (abandoners included)",
+    "scriptTokens": { "input": 2500, "output": 2500 },
+    "moderationTokens": { "input": 1500, "output": 300 },
+    "moderationCallsPerOrder": 2
+  },
+  "amortizationScenarios": [1000, 5000, 20000],
+  "$amortization": "Total instant videos delivered (B2C + business, both languages) that the one-off library cost is spread over"
+}

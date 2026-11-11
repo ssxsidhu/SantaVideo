@@ -1,0 +1,30 @@
+[
+  {
+    "id": "instant-common-en-emma",
+    "description": "Common EN name spliced into the master name moment",
+    "video": "benchmark/assets/master-en_name-slot.mp4",
+    "audio": "benchmark/assets/greeting-en-emma.mp3",
+    "providers": ["sync-lipsync-2", "sync-lipsync-2-pro", "fal-latentsync", "fal-kling-lipsync"]
+  },
+  {
+    "id": "instant-rare-en-oluwaseun",
+    "description": "Rare EN name (on-demand path) - tests pronunciation + latency",
+    "video": "benchmark/assets/master-en_name-slot.mp4",
+    "audio": "benchmark/assets/greeting-en-oluwaseun.mp3",
+    "providers": ["sync-lipsync-2", "sync-lipsync-2-pro", "fal-latentsync", "fal-kling-lipsync"]
+  },
+  {
+    "id": "instant-fr-lea",
+    "description": "French name with Pere Noel voice",
+    "video": "benchmark/assets/master-fr_name-slot.mp4",
+    "audio": "benchmark/assets/greeting-fr-lea.mp3",
+    "providers": ["sync-lipsync-2", "sync-lipsync-2-pro", "fal-latentsync", "fal-kling-lipsync"]
+  },
+  {
+    "id": "custom-en-60s",
+    "description": "Full custom script, one per provider (Kling is chunked to 10 s pieces by the pipeline later)",
+    "video": "benchmark/assets/master-en_full.mp4",
+    "audio": "benchmark/assets/custom-en-sample.mp3",
+    "providers": ["sync-lipsync-2", "sync-lipsync-2-pro", "fal-latentsync"]
+  }
+]

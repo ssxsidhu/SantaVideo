@@ -1,0 +1,9 @@
+node_modules/
+.env
+.env.*
+!.env.example
+# Benchmark media: large files and may contain test voice/likeness assets
+benchmark/out/
+benchmark/assets/
+benchmark/cases.json
+*.log

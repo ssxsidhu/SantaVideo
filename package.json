@@ -1,0 +1,31 @@
+{
+  "name": "myvideofromsanta",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "bench:costs": "tsx benchmark/src/report.ts",
+    "bench:run": "tsx --env-file-if-exists=.env benchmark/src/run.ts",
+    "bench:splice": "tsx benchmark/src/splice.ts",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "bench:still": "tsx --env-file-if-exists=.env benchmark/src/generateStill.ts",
+    "bench:master": "tsx --env-file-if-exists=.env benchmark/src/generateMaster.ts",
+    "bench:opening": "tsx --env-file-if-exists=.env benchmark/src/generateOpening.ts",
+    "bench:assemble": "tsx benchmark/src/assembleMaster.ts",
+    "bench:assemble-take": "tsx benchmark/src/assembleTake.ts",
+    "bench:names": "tsx --env-file-if-exists=.env benchmark/src/nameTest.ts",
+    "bench:inpaint": "tsx --env-file-if-exists=.env benchmark/src/inpaintEyes.ts"
+  },
+  "dependencies": {
+    "@fal-ai/client": "^1.10.1"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.0"
+  }
+}

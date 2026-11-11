@@ -1,0 +1,34 @@
+{
+  "$comment": "fal endpoints used by the benchmark. All three shortlisted providers are reachable through one FAL_KEY. 'verified' = endpoint + input fields checked against the fal API page on 2026-11-09.",
+  "sync-lipsync-2": {
+    "endpoint": "fal-ai/sync-lipsync/v2",
+    "input": {
+      "model": "lipsync-2",
+      "sync_mode": "cut_off"
+    },
+    "verified": true,
+    "$note": "Verified 2026-11-10 on fal llms.txt: model enum lipsync-2 | lipsync-2-pro (pro ~1.67x), sync_mode, $3/min"
+  },
+  "sync-lipsync-2-pro": {
+    "endpoint": "fal-ai/sync-lipsync/v2",
+    "input": {
+      "model": "lipsync-2-pro",
+      "sync_mode": "cut_off"
+    },
+    "verified": true
+  },
+  "fal-latentsync": {
+    "endpoint": "fal-ai/latentsync",
+    "input": {
+      "loop_mode": "pingpong",
+      "guidance_scale": 1
+    },
+    "verified": true
+  },
+  "fal-kling-lipsync": {
+    "endpoint": "fal-ai/kling-video/lipsync/audio-to-video",
+    "input": {},
+    "verified": true,
+    "$note": "Input video must be 2-10 s, 720-1920 px. Custom scripts must be chunked."
+  }
+}
