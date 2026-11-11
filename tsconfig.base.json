@@ -1,0 +1,17 @@
+{
+  "$comment": "Shared settings for the app workspaces (apps/*, packages/*, workers/*). benchmark/ keeps its own NodeNext tsconfig.json.",
+  "compilerOptions": {
+    "target": "ES2023",
+    "lib": ["ES2023"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "types": ["node"]
+  }
+}

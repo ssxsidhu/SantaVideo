@@ -46,6 +46,8 @@ Launch before Black Friday (Nov 27, 2026), sell until Dec 24. Full brief: [docs/
 | 2026-11-10 | **Name-switch test passed** (`npm run bench:names`, then `bench:assemble-take --slot-clip/--slot-audio/--slot-start`): Emma, Bo, Maximiliano, Siobhan on master v2, Sync lipsync-2 vs 2-pro, ~$1.24. Findings: 2-pro keeps beard texture and teeth; lipsync-2 smears the beard (one green lip artifact). Sync returned 2.04 s of the 2.32 s slot (cut at end of speech). Long names need a faster TTS read (Maximiliano at speed 1.05). Swap must happen on the voice stem before the music mix. Pixels outside the mouth shift slightly inside the slot (diff 1.7 vs 0.75 baseline) → production should composite only the mouth region back | Led to locking lipsync-2-pro (2026-11-11) |
 | 2026-11-10 | Name-swap compositing fixed (owner noticed the frame color change in the slot): (1) clear Sync's bt709 color tags before overlay (`setparams`), otherwise swscale shifts the clip warmer; (2) `--mouth-mask=cx,cy,rx,ry` pastes back only a feathered oval around the mouth (master v2: `960,540,300,230`). Result: pixels outside the mouth match the master within encode noise. The mask belongs in each master's manifest next to the name slot | Owner feedback |
 | 2026-11-10 | EN voice switched to **"Mr. Claus"** (`uDsPstFWFBUXjIBimV7s`) for master v2; Jerry B is now the fallback | Owner decision |
+| 2026-11-11 | **Payments via Stripe Managed Payments** (Stripe = merchant of record, tax code `txcd_10402100`); **sales tax added on top** of the listed price. Webhook checks `amount_subtotal`, not `amount_total` | Owner decision: Stripe handles tax filing, fraud and disputes in 80+ countries |
+| 2026-11-11 | Media storage on Cloudflare R2 (`myvideofromsanta-media`, private, 1-hour signed links) | Owner's domain is already on Cloudflare; no egress fees |
 | pending | FR Père Noël voice | Candidates: designed fr-A/B/C, library "Santa – Gentle and Heartwarming" (Quebec, `s6w9aeDifUqNIV5QeIBE`) |
 
 ## Repository layout (Phase 0)
@@ -66,7 +68,7 @@ benchmark/
 docs/                   phase reports, generated cost model
 ```
 
-Planned for Phase 1+: `apps/web` (Next.js App Router), `workers/*` (BullMQ: tts, lipsync, assemble, library), `packages/db` (Drizzle), `infra/` (Docker Compose; nginx on the VPS, not Caddy, because the box is shared).
+Phase 1 (npm workspaces): `apps/web` (Next.js 16 App Router + Tailwind 4, EN/FR under /en and /fr), `workers/render` (BullMQ worker: TTS → slot fit → Sync → ffmpeg), `packages/core` (pricing, names, tokens, crypto, cache keys, storage, i18n, masters), `packages/db` (Drizzle schema + migrations). Master settings (slot, mouth mask, voice) live in `config/masters.json`. Planned: `infra/` (Docker Compose; nginx on the VPS, not Caddy, because the box is shared).
 
 ## Server (shared VPS, `ssh reality-check`)
 
@@ -88,6 +90,13 @@ Requirements: Node ≥ 22, ffmpeg/ffprobe on PATH, the SSH tunnel above for the 
 npm install
 npm test                  # vitest
 npm run typecheck
+npm run master:prepare    # once per master version: upscaled body, slot clip, end-card plate -> .data/masters/
+npm run dev               # site on http://localhost:3000 (EN /en, FR /fr)
+npm run stripe:listen     # forwards Stripe test webhooks to the site (needs the Stripe CLI)
+npm run worker            # render worker (TTS -> Sync lipsync-2-pro -> ffmpeg); spends money on new names
+npm run sample -- Emma    # landing-page sample video (public name)
+npm run db:generate       # after editing packages/db/src/schema.ts
+npm run db:migrate        # apply migrations (tunnel open)
 npm run bench:costs       # regenerate docs/phase0-cost-model.md from config/*.json
 npm run bench:run -- benchmark/cases.json            # dry run: prints spend estimate
 npm run bench:run -- benchmark/cases.json --confirm  # calls providers (needs FAL_KEY)

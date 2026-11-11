@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+/* Warm night-by-the-fire palette: evergreen dark, cream text, candle gold, cranberry for the one action. */
+@theme {
+  --color-night: #0e1813;
+  --color-pine: #16261e;
+  --color-pine-light: #213529;
+  --color-cream: #f6eedf;
+  --color-cream-dim: #c9bfae;
+  --color-gold: #e2b866;
+  --color-cranberry: #b3343f;
+  --color-cranberry-dark: #8f2731;
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+}
+
+html {
+  background: var(--color-night);
+  color: var(--color-cream);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  min-height: 100dvh;
+  background:
+    radial-gradient(1200px 600px at 50% -10%, rgb(226 184 102 / 0.12), transparent 60%),
+    var(--color-night);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}

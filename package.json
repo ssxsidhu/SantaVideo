@@ -10,14 +10,21 @@
     "bench:run": "tsx --env-file-if-exists=.env benchmark/src/run.ts",
     "bench:splice": "tsx benchmark/src/splice.ts",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc --noEmit && tsc --noEmit -p packages/core && tsc --noEmit -p packages/db && tsc --noEmit -p workers/render && tsc --noEmit -p apps/web",
     "bench:still": "tsx --env-file-if-exists=.env benchmark/src/generateStill.ts",
     "bench:master": "tsx --env-file-if-exists=.env benchmark/src/generateMaster.ts",
     "bench:opening": "tsx --env-file-if-exists=.env benchmark/src/generateOpening.ts",
     "bench:assemble": "tsx benchmark/src/assembleMaster.ts",
     "bench:assemble-take": "tsx benchmark/src/assembleTake.ts",
     "bench:names": "tsx --env-file-if-exists=.env benchmark/src/nameTest.ts",
-    "bench:inpaint": "tsx --env-file-if-exists=.env benchmark/src/inpaintEyes.ts"
+    "bench:inpaint": "tsx --env-file-if-exists=.env benchmark/src/inpaintEyes.ts",
+    "dev": "npm run dev -w @santa/web",
+    "worker": "npm run start -w @santa/render-worker",
+    "master:prepare": "npm run prepare-master -w @santa/render-worker",
+    "sample": "npm run sample -w @santa/render-worker --",
+    "db:generate": "npm run generate -w @santa/db",
+    "db:migrate": "npm run migrate -w @santa/db",
+    "stripe:listen": "stripe listen --forward-to localhost:3000/api/stripe/webhook"
   },
   "dependencies": {
     "@fal-ai/client": "^1.10.1"
@@ -27,5 +34,10 @@
     "tsx": "^4.23.15",
     "typescript": "^7.0.2",
     "vitest": "^5.1.0"
-  }
+  },
+  "workspaces": [
+    "packages/*",
+    "workers/*",
+    "apps/*"
+  ]
 }

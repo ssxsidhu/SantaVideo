@@ -7,3 +7,12 @@ benchmark/out/
 benchmark/assets/
 benchmark/cases.json
 *.log
+
+# Local storage + derived master files (videos, clips, previews)
+.data/
+# Next.js build output
+.next/
+apps/web/.next/
+*.tsbuildinfo
+# Font candidates (the chosen font + its OFL.txt get committed in assets/fonts/)
+assets/fonts/_candidates/

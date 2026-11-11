@@ -1,0 +1,17 @@
+{
+  "name": "@santa/render-worker",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "tsx --env-file-if-exists=../../.env src/worker.ts",
+    "prepare-master": "tsx --env-file-if-exists=../../.env src/prepareMaster.ts",
+    "sample": "tsx --env-file-if-exists=../../.env src/renderSample.ts",
+    "typecheck": "tsc --noEmit -p ."
+  },
+  "dependencies": {
+    "@santa/core": "*",
+    "@santa/db": "*",
+    "ioredis": "^6.0.0"
+  }
+}

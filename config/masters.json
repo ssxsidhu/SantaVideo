@@ -1,0 +1,15 @@
+{
+  "$comment": "Master Santa performances used by the render pipeline. Source files are large and gitignored; paths are relative to the repo root. Changing version invalidates every cached name clip (it is part of the cache key). Times are seconds within the take.",
+  "en": {
+    "version": "en-v3-take-1",
+    "take": "benchmark/out/masters/master-en-v3-take__omnihuman-720p.mp4",
+    "voiceTrack": "benchmark/out/audio/master-en-v3/master-en-v3.wav",
+    "music": "benchmark/assets/master/music-bed-en.mp3",
+    "voiceId": "uDsPstFWFBUXjIBimV7s",
+    "tts": { "model": "eleven_multilingual_v2", "stability": 0.5, "similarity_boost": 0.8, "style": 0.25, "speed": 0.9 },
+    "nameSlot": { "start": 5.134, "end": 7.42 },
+    "greetingOffset": 0.35,
+    "mouthMask": { "cx": 985, "cy": 420, "rx": 170, "ry": 120 },
+    "endCardFrom": 41.5
+  }
+}
