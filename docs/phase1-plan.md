@@ -11,7 +11,7 @@ apps/web          Next.js App Router + Tailwind: landing, name entry, preview, c
 workers/render    BullMQ worker: greeting TTS → Sync lipsync-2-pro → assemble (code moved from benchmark/src)
 packages/db       Drizzle schema + migrations (Postgres)
 packages/core     shared: pricing config, name validation, render cache keys, storage adapter, i18n messages
-infra/            docker-compose.dev.yml (Postgres + Redis)
+infra/            docker-compose.server.yml (Postgres + Redis on the VPS)
 ```
 
 ## Data (first cut)
@@ -39,7 +39,7 @@ Payment webhook idempotency + signature check; name validation; render cache key
 
 ## What I need from the owner
 
-1. **Local Postgres + Redis**: Docker isn't installed here. Install Docker Desktop (free), or tell me to use native Windows installs.
+1. ~~Local Postgres + Redis~~ Done 2026-11-11: running on the shared VPS behind an SSH tunnel (see CLAUDE.md "Server").
 2. **Stripe test keys** (`STRIPE_SECRET_KEY` test, webhook secret via Stripe CLI) — test mode only.
 3. **Resend**: API key later; dev logs emails instead.
 4. **Library spend**: each new name costs ≈ $0.17 (Sync pro) + TTS. Test orders in Phase 1 use ~10 names (≈ $2).

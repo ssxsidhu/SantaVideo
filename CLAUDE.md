@@ -66,11 +66,23 @@ benchmark/
 docs/                   phase reports, generated cost model
 ```
 
-Planned for Phase 1+: `apps/web` (Next.js App Router), `workers/*` (BullMQ: tts, lipsync, assemble, library), `packages/db` (Drizzle), `infra/` (Docker Compose + Caddy).
+Planned for Phase 1+: `apps/web` (Next.js App Router), `workers/*` (BullMQ: tts, lipsync, assemble, library), `packages/db` (Drizzle), `infra/` (Docker Compose; nginx on the VPS, not Caddy, because the box is shared).
+
+## Server (shared VPS, `ssh reality-check`)
+
+Postgres 16 + Redis 7 run on the shared realitycheck-prod VPS from `~/santavideo` (= `infra/docker-compose.server.yml` + a server-only `.env` with generated passwords, mode 600). Ports are loopback-only: Postgres `127.0.0.1:5433`, Redis `127.0.0.1:6380` (AOF on, `noeviction` for BullMQ). Containers are memory-capped (256 MB / 128 MB) because other live apps share the box (nginx owns 80/443; don't touch other containers). Videos go to R2, not the server disk (~8 GB free).
+
+Dev from a PC: keep this tunnel open, then the local `.env` URLs point at `127.0.0.1:5433` / `:6380`:
+
+```bash
+ssh -N -L 5433:127.0.0.1:5433 -L 6380:127.0.0.1:6380 reality-check
+```
+
+Update the stack: `scp infra/docker-compose.server.yml reality-check:santavideo/docker-compose.yml && ssh reality-check 'cd ~/santavideo && docker compose up -d'`.
 
 ## How to run
 
-Requirements: Node ≥ 22, ffmpeg/ffprobe on PATH. Docker only needed from Phase 4/5.
+Requirements: Node ≥ 22, ffmpeg/ffprobe on PATH, the SSH tunnel above for the database and queue. No Docker needed locally.
 
 ```bash
 npm install
